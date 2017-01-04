@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 import webapp.Entity.Product;
 
-public class ProductDaoImpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO {
 	
     private EntityManagerFactory entityManagerFactory;
 

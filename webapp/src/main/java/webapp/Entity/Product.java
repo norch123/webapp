@@ -1,9 +1,12 @@
 package webapp.Entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,6 +24,9 @@ public class Product {
 	private String name;
 	private String description;
 	private Float price;
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="type_id")
+	private ProductType productType;
 	
 	public Product() {
 		
@@ -54,11 +60,18 @@ public class Product {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description="
-				+ description + ", price=" + price + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+				+ ", productType=" + productType + "]";
 	}
-
+	
 	
 }

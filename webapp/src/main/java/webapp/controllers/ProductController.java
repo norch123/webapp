@@ -2,9 +2,6 @@ package webapp.controllers;
 
 import java.util.List;
 
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,27 +10,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import webapp.Entity.Product;
-import webapp.dao.ProductDaoImpl;
+import webapp.Entity.ProductType;
+import webapp.dao.ProductDAOImpl;
+import webapp.dao.ProductTypeDAOImpl;
 
 @Controller
 @RequestMapping(path= "/products")
 public class ProductController {
 	
 	@Autowired
-	private ProductDaoImpl productDAOImpl;
+	private ProductDAOImpl productDAOImpl;
 
-	public ProductDaoImpl getProductDAOImpl() {
+	public ProductDAOImpl getProductDAOImpl() {
 		return productDAOImpl;
 	}
 
-	public void setProductDAOImpl(ProductDaoImpl productDAOImpl) {
+	public void setProductDAOImpl(ProductDAOImpl productDAOImpl) {
 		this.productDAOImpl = productDAOImpl;
 	}
 
 	@RequestMapping(value = "/all.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String getAllProducts() {
-		List<Product> listProducts = null;;
+		List<Product> listProducts = null;
 		try {
 			listProducts = productDAOImpl.getAllProducts();
 		} catch(Exception e) {
